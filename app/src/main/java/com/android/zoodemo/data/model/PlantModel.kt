@@ -1,0 +1,79 @@
+package com.android.zoodemo.data.model
+
+
+import com.squareup.moshi.Json
+
+data class PlantModel(
+    @Json(name = "F_AlsoKnown")
+    val fAlsoKnown: String = "",
+    @Json(name = "F_Brief")
+    val fBrief: String = "",
+    @Json(name = "F_CID")
+    val fCID: String = "",
+    @Json(name = "F_Code")
+    val fCode: String = "",
+    @Json(name = "F_Family")
+    val fFamily: String = "",
+    @Json(name = "F_Feature")
+    val fFeature: String = "",
+    @Json(name = "F_Function＆Application")
+    val fFunction: String = "",
+    @Json(name = "F_Genus")
+    val fGenus: String = "",
+    @Json(name = "F_Geo")
+    val fGeo: String = "",
+    @Json(name = "F_Keywords")
+    val fKeywords: String = "",
+    @Json(name = "F_Location")
+    val fLocation: String = "",
+    @Json(name = "F_Name_En")
+    val fNameEn: String = "",
+    @Json(name = "F_Name_Latin")
+    val fNameLatin: String = "",
+    @Json(name = "F_pdf01_ALT")
+    val fPdf01ALT: String = "",
+    @Json(name = "F_pdf01_URL")
+    val fPdf01URL: String = "",
+    @Json(name = "F_pdf02_ALT")
+    val fPdf02ALT: String = "",
+    @Json(name = "F_pdf02_URL")
+    val fPdf02URL: String = "",
+    @Json(name = "F_Pic01_ALT")
+    val fPic01ALT: String = "",
+    @Json(name = "F_Pic01_URL")
+    val fPic01URL: String = "",
+    @Json(name = "F_Pic02_ALT")
+    val fPic02ALT: String = "",
+    @Json(name = "F_Pic02_URL")
+    val fPic02URL: String = "",
+    @Json(name = "F_Pic03_ALT")
+    val fPic03ALT: String = "",
+    @Json(name = "F_Pic03_URL")
+    val fPic03URL: String = "",
+    @Json(name = "F_Pic04_ALT")
+    val fPic04ALT: String = "",
+    @Json(name = "F_Pic04_URL")
+    val fPic04URL: String = "",
+    @Json(name = "F_Summary")
+    val fSummary: String = "",
+    @Json(name = "F_Update")
+    val fUpdate: String = "",
+    @Json(name = "F_Vedio_URL")
+    val fVedioURL: String = "",
+    @Json(name = "F_Voice01_ALT")
+    val fVoice01ALT: String = "",
+    @Json(name = "F_Voice01_URL")
+    val fVoice01URL: String = "",
+    @Json(name = "F_Voice02_ALT")
+    val fVoice02ALT: String = "",
+    @Json(name = "F_Voice02_URL")
+    val fVoice02URL: String = "",
+    @Json(name = "F_Voice03_ALT")
+    val fVoice03ALT: String = "",
+    @Json(name = "F_Voice03_URL")
+    val fVoice03URL: String = "",
+    @Json(name = "_id")
+    val id: Int = 0,
+    @Json(name = "F_Name_Ch")
+    val fNameCh: String = ""
+)
