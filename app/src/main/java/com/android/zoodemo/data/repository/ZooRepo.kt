@@ -16,9 +16,15 @@ class ZooRepo {
     suspend fun getPlantMap(): ApiResponse<Map<String, ArrayList<PlantModel>>> {
         when(val apiResponse = apiManager.getPlantDataFromNetwork()){
             is ApiResponse.Success -> {
-                val plantMap = mutableMapOf<String, ArrayList<PlantModel>>()
-                for(plant in apiResponse.data.plantDataModel.plantList) {
-                    val plantLocationList = plant.fLocation.replace(" ", "").split("；")
+                val plantLocationMap = mutableMapOf<String, ArrayList<PlantModel>>()
+                val plantFilterRepeatMap = mutableMapOf<String, PlantModel>()
+                for(temp in apiResponse.data.plantDataModel.plantList){
+                    if(!plantFilterRepeatMap.containsKey(temp.fNameCh)){
+                        plantFilterRepeatMap[temp.fNameCh] = temp
+                    }
+                }
+                for (plant in plantFilterRepeatMap) {
+                    val plantLocationList = plant.value.fLocation.replace(" ", "").split("；")
                     for ( plantLocation in plantLocationList) {
                         var plantLocationMapValue = mutableListOf<PlantModel>()
 
@@ -29,17 +35,17 @@ class ZooRepo {
                             else -> plantLocation
                         }
 
-                        if(plantMap.containsKey(keyLocation)){
-                            plantLocationMapValue = plantMap.getValue(keyLocation)
-                            plantLocationMapValue.add(plant)
-                            plantMap[keyLocation] = plantLocationMapValue
+                        if(plantLocationMap.containsKey(keyLocation)){
+                            plantLocationMapValue = plantLocationMap.getValue(keyLocation)
+                            plantLocationMapValue.add(plant.value)
+                            plantLocationMap[keyLocation] = plantLocationMapValue
                         } else {
-                            plantLocationMapValue.add(plant)
-                            plantMap[keyLocation] = plantLocationMapValue as ArrayList<PlantModel>
+                            plantLocationMapValue.add(plant.value)
+                            plantLocationMap[keyLocation] = plantLocationMapValue as ArrayList<PlantModel>
                         }
                     }
                 }
-                return ApiResponse.Success(plantMap as Map<String, ArrayList<PlantModel>>)
+                return ApiResponse.Success(plantLocationMap as Map<String, ArrayList<PlantModel>>)
             }
             is ApiResponse.Error -> {
                 return ApiResponse.Error(apiResponse.errno, apiResponse.msg)

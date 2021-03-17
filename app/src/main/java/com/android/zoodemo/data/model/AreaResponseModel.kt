@@ -1,11 +1,9 @@
 package com.android.zoodemo.data.model
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class AreaResponseModel(
-    @Json(name = "result")
+    @SerializedName("result")
     val areaDataModel: AreaDataModel = AreaDataModel()
 )

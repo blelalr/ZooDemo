@@ -2,4 +2,5 @@
     <string name="app_name">ZooDemo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="item_view_area_tv_no_memo">無休館資訊</string>
 </resources>

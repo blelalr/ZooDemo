@@ -1,19 +1,17 @@
 package com.android.zoodemo.data.model
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class AreaDataModel(
-    @Json(name = "count")
+    @SerializedName("count")
     val count: Int = 0,
-    @Json(name = "results")
-    val areaList: List<AreaModel> = listOf(),
-    @Json(name = "limit")
+    @SerializedName("limit")
     val limit: Int = 0,
-    @Json(name = "offset")
+    @SerializedName("offset")
     val offset: Int = 0,
-    @Json(name = "sort")
+    @SerializedName("results")
+    val areaList: List<AreaModel> = listOf(),
+    @SerializedName("sort")
     val sort: String = ""
 )

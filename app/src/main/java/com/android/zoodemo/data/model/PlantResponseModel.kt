@@ -1,9 +1,9 @@
 package com.android.zoodemo.data.model
 
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class PlantResponseModel(
-    @Json(name = "result")
+    @SerializedName("result")
     val plantDataModel: PlantDataModel = PlantDataModel()
 )

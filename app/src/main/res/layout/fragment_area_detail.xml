@@ -1,14 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.AreaDetailFragment">
+    tools:context=".view.area.AreaDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/iv_area_detail_image"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/iv_area_detail_image">
+
+            <TextView
+                android:id="@+id/tv_area_detail_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_area_detail_memo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="memo"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_area_detail_info"
+                app:layout_constraintTop_toBottomOf="@+id/tv_area_detail_info" />
+
+            <TextView
+                android:id="@+id/tv_area_detail_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="category"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_area_detail_info"
+                app:layout_constraintTop_toBottomOf="@+id/tv_area_detail_memo" />
+
+            <TextView
+                android:id="@+id/tv_area_detail_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="在網頁開啟"
+                android:textColor="@color/color_FA2F0"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_area_detail_info"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_area_detail_category" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_plant_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_info" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

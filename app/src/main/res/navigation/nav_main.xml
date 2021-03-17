@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/areaListFragment">
+
+    <fragment
+        android:id="@+id/areaListFragment"
+        android:name="com.android.zoodemo.view.area.AreaListFragment"
+        android:label="台北市立動物園"
+        tools:layout="@layout/fragment_area_list" >
+        <action
+            android:id="@+id/action_areaListFragment_to_areaDetailFragment"
+            app:destination="@id/areaDetailFragment"
+            app:enterAnim="@animator/nav_default_enter_anim"
+            app:exitAnim="@animator/nav_default_exit_anim"
+            app:popEnterAnim="@animator/nav_default_pop_enter_anim"
+            app:popExitAnim="@animator/nav_default_pop_exit_anim"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/areaDetailFragment"
+        android:name="com.android.zoodemo.view.area.AreaDetailFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_area_detail" >
+        <action
+            android:id="@+id/action_areaDetailFragment_to_plantDetailFragment"
+            app:enterAnim="@animator/nav_default_enter_anim"
+            app:exitAnim="@animator/nav_default_exit_anim"
+            app:popEnterAnim="@animator/nav_default_pop_enter_anim"
+            app:popExitAnim="@animator/nav_default_pop_exit_anim"
+            app:popUpToInclusive="true"
+            app:destination="@id/plantDetailFragment"/>
+        <argument
+            android:name="area"
+            app:argType="com.android.zoodemo.data.model.AreaModel" />
+
+        <argument
+            android:name="title"
+            app:argType="string" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/plantDetailFragment"
+        android:name="com.android.zoodemo.view.plant.PlantDetailFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_plant_detail" >
+        <argument
+            android:name="plant"
+            app:argType="com.android.zoodemo.data.model.PlantModel" />
+
+        <argument
+            android:name="title"
+            app:argType="string" />
+
+    </fragment>
+</navigation>

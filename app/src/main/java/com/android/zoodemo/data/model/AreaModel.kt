@@ -1,27 +1,26 @@
 package com.android.zoodemo.data.model
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-@JsonClass(generateAdapter = true)
 data class AreaModel(
-    @Json(name = "E_Category")
+    @SerializedName("E_Category")
     val eCategory: String = "",
-    @Json(name = "E_Geo")
+    @SerializedName("E_Geo")
     val eGeo: String = "",
-    @Json(name = "E_Info")
+    @SerializedName("E_Info")
     val eInfo: String = "",
-    @Json(name = "E_Memo")
+    @SerializedName("E_Memo")
     val eMemo: String = "",
-    @Json(name = "E_Name")
+    @SerializedName("E_Name")
     val eName: String = "",
-    @Json(name = "E_no")
+    @SerializedName("E_no")
     val eNo: String = "",
-    @Json(name = "E_Pic_URL")
+    @SerializedName("E_Pic_URL")
     val ePicURL: String = "",
-    @Json(name = "E_URL")
+    @SerializedName("E_URL")
     val eURL: String = "",
-    @Json(name = "_id")
+    @SerializedName("_id")
     val id: Int = 0
-)
+): Serializable

@@ -1,17 +1,17 @@
 package com.android.zoodemo.data.model
 
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class PlantDataModel(
-    @Json(name = "count")
+    @SerializedName("count")
     val count: Int = 0,
-    @Json(name = "limit")
+    @SerializedName("limit")
     val limit: Int = 0,
-    @Json(name = "offset")
+    @SerializedName("offset")
     val offset: Int = 0,
-    @Json(name = "results")
+    @SerializedName("results")
     val plantList: List<PlantModel> = listOf(),
-    @Json(name = "sort")
+    @SerializedName("sort")
     val sort: String = ""
 )
