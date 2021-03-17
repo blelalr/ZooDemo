@@ -35,8 +35,6 @@ class GlideUtil {
             }
         }
 
-
-
         fun load(url: String, imageView: ImageView, placeHolder : Int) {
             Glide.with(imageView)
                 .load(url)

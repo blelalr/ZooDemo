@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.zoodemo.R
 import com.android.zoodemo.data.model.PlantModel
 import com.android.zoodemo.util.GlideUtil
-import com.bumptech.glide.Glide
 
 class PlantListAdapter(private val mPlantClickListener : PlantClickListener) : RecyclerView.Adapter<PlantViewHolder>() {
     var mData = listOf<PlantModel>()

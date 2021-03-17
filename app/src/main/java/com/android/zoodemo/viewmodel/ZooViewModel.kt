@@ -8,20 +8,19 @@ import com.android.zoodemo.data.model.AreaResponseModel
 import com.android.zoodemo.data.model.PlantModel
 import com.android.zoodemo.data.network.ApiResponse
 import com.android.zoodemo.data.repository.ZooRepo
-import kotlinx.coroutines.Dispatchers
 
 class ZooViewModel(private val zooRepo:ZooRepo = ZooRepo()) :ViewModel() {
     val mPlantMap = MutableLiveData<Map<String, ArrayList<PlantModel>>>()
     val mAreaList = MutableLiveData<AreaResponseModel>()
 
     fun getAreaList(): LiveData<ApiResponse<AreaResponseModel>>{
-        return liveData(Dispatchers.IO) {
+        return liveData {
             emit(zooRepo.getAreaList())
         }
     }
 
     fun getPlantMap(): LiveData<ApiResponse<Map<String, ArrayList<PlantModel>>>> {
-        return liveData(Dispatchers.IO) {
+        return liveData {
             emit(zooRepo.getPlantMap())
         }
     }

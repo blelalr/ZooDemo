@@ -36,6 +36,7 @@ class AreaDetailFragment : Fragment(R.layout.fragment_area_detail), PlantClickLi
     }
 
     private fun initView() {
+        GlideUtil.load(arg.area.ePicURL, mBinding.ivAreaDetailImage, android.R.drawable.stat_sys_download)
         mBinding.tvAreaDetailInfo.text = arg.area.eInfo
         mBinding.tvAreaDetailCategory.text = arg.area.eCategory
         mBinding.tvAreaDetailMemo.text = if(arg.area.eMemo .isNullOrBlank()) {
@@ -43,7 +44,6 @@ class AreaDetailFragment : Fragment(R.layout.fragment_area_detail), PlantClickLi
         } else {
             arg.area.eMemo
         }
-        GlideUtil.load(arg.area.ePicURL, mBinding.ivAreaDetailImage, android.R.drawable.stat_sys_download)
 
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL

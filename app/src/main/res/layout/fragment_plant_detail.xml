@@ -8,11 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="10dp">
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/iv_plant_detail_image"
             android:layout_width="match_parent"
@@ -23,73 +19,85 @@
 
         <TextView
             android:id="@+id/tv_plant_detail_name_ch"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:lines="1"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:lines="1"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintTop_toBottomOf="@+id/iv_plant_detail_image"
             tools:text="tv_plant_detail_name_ch" />
+
         <TextView
             android:id="@+id/tv_plant_detail_name_en"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="16sp"
             android:layout_marginTop="4dp"
             android:lines="1"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_plant_detail_name_ch"
+            app:layout_constraintStart_toStartOf="@+id/tv_plant_detail_name_ch"
             app:layout_constraintTop_toBottomOf="@+id/tv_plant_detail_name_ch"
             tools:text="tv_plant_detail_name_en" />
         <TextView
             android:id="@+id/tv_plant_detail_also_know"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_plant_detail_name_ch"
+            app:layout_constraintStart_toStartOf="@+id/tv_plant_detail_name_ch"
             app:layout_constraintTop_toBottomOf="@+id/tv_plant_detail_name_en"
             tools:text="tv_plant_detail_also_know" />
         <TextView
             android:id="@+id/tv_plant_detail_brief"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_plant_detail_name_ch"
+            app:layout_constraintStart_toStartOf="@+id/tv_plant_detail_name_ch"
             app:layout_constraintTop_toBottomOf="@+id/tv_plant_detail_also_know"
             tools:text="tv_plant_detail_brief" />
         <TextView
             android:id="@+id/tv_plant_detail_feature"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_plant_detail_name_ch"
+            app:layout_constraintStart_toStartOf="@+id/tv_plant_detail_name_ch"
             app:layout_constraintTop_toBottomOf="@+id/tv_plant_detail_brief"
             tools:text="tv_plant_detail_feature" />
         <TextView
             android:id="@+id/tv_plant_detail_function"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_plant_detail_name_ch"
+            app:layout_constraintStart_toStartOf="@+id/tv_plant_detail_name_ch"
             app:layout_constraintTop_toBottomOf="@+id/tv_plant_detail_feature"
             tools:text="tv_plant_detail_function" />
         <TextView
             android:id="@+id/tv_plant_detail_update"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_plant_detail_name_ch"
+            app:layout_constraintStart_toStartOf="@+id/tv_plant_detail_name_ch"
             app:layout_constraintTop_toBottomOf="@+id/tv_plant_detail_function"
             tools:text="tv_plant_detail_update" />
 
