@@ -17,7 +17,6 @@ import com.android.zoodemo.util.GlideUtil
 import com.android.zoodemo.view.plant.PlantClickListener
 import com.android.zoodemo.view.plant.PlantListAdapter
 import com.android.zoodemo.viewmodel.ZooViewModel
-import com.bumptech.glide.Glide
 import com.xnbay.xnfun.tv.delegate.viewBinding
 
 class AreaDetailFragment : Fragment(R.layout.fragment_area_detail), PlantClickListener{

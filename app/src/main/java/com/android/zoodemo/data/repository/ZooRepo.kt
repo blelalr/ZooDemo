@@ -7,7 +7,6 @@ import com.android.zoodemo.data.network.ApiResponse
 
 class ZooRepo {
     private val apiManager = ApiManager
-    //TODO local data
 
     suspend fun getAreaList(): ApiResponse<AreaResponseModel> {
         return apiManager.getAreaDataFromNetwork()

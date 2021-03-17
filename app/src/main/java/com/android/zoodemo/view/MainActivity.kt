@@ -1,7 +1,6 @@
 package com.android.zoodemo.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.activity.viewModels
@@ -23,12 +22,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        setupToolBar()
+        if(mZooViewModel.mAreaList.value == null || mZooViewModel.mPlantMap.value == null) {
+            getDataFromNetWork()
+        }
+    }
+
+    private fun setupToolBar() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.container_main) as NavHostFragment
         val navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         mBinding.toolbar.setupWithNavController(navController, appBarConfiguration)
-
-        getDataFromNetWork()
     }
 
     private fun getDataFromNetWork() {
@@ -40,40 +44,33 @@ class MainActivity : AppCompatActivity() {
                     mBinding.containerMain.visibility = VISIBLE
                     mBinding.tvError.visibility = GONE
                     mZooViewModel.mAreaList.postValue(it.data)
-                    Log.d("esther", "Success "+ it.data)
                 }
                 is ApiResponse.Error -> {
-                    Log.d("esther", "Error ")
                     mBinding.containerMain.visibility = GONE
                     mBinding.tvError.visibility = VISIBLE
                     mBinding.tvError.text = "API ERROR -- error code: ${it.errno} message: ${it.msg}"
                 }
                 is ApiResponse.Exception -> {
-                    Log.d("esther", "Exception ")
                     mBinding.containerMain.visibility = GONE
                     mBinding.tvError.visibility = VISIBLE
                     mBinding.tvError.text = "Exception -- exception: ${it.exception.message}"
                 }
             }
         })
-        mBinding.progressLoading.visibility = VISIBLE
         mZooViewModel.getPlantMap().observe(this, Observer {
             mBinding.progressLoading.visibility = GONE
             when(it){
                 is ApiResponse.Success -> {
-                    Log.d("esther", "Success ${it.data}")
                     mBinding.containerMain.visibility = VISIBLE
                     mBinding.tvError.visibility = GONE
                     mZooViewModel.mPlantMap.postValue(it.data)
                 }
                 is ApiResponse.Error -> {
-                    Log.d("esther", "Error ")
                     mBinding.containerMain.visibility = GONE
                     mBinding.tvError.visibility = VISIBLE
                     mBinding.tvError.text = "API ERROR -- error code: ${it.errno} message: ${it.msg}"
                 }
                 is ApiResponse.Exception -> {
-                    Log.d("esther", "Exception ")
                     mBinding.containerMain.visibility = GONE
                     mBinding.tvError.visibility = VISIBLE
                     mBinding.tvError.text = "Exception -- exception: ${it.exception.message}"

@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.zoodemo.R
 import com.android.zoodemo.data.model.AreaModel
 import com.android.zoodemo.util.GlideUtil
-import com.bumptech.glide.Glide
 
 class AreaListAdapter(private val mAreaClickListener : AreaClickListener): RecyclerView.Adapter<AreaViewHolder>() {
     var mData = listOf<AreaModel>()
