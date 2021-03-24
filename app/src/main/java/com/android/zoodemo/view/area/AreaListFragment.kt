@@ -37,9 +37,9 @@ class AreaListFragment : Fragment(R.layout.fragment_area_list), AreaClickListene
     }
 
     override fun onAreaItemClick(area: AreaModel) {
-        mNavController.navigate(
-            AreaListFragmentDirections.actionAreaListFragmentToAreaDetailFragment(area, area.eName)
-        )
+        mNavController.currentDestination?.getAction(R.id.action_areaListFragment_to_areaDetailFragment)?.let {
+            mNavController.navigate(AreaListFragmentDirections.actionAreaListFragmentToAreaDetailFragment(area, area.eName))
+        }
     }
 
 }

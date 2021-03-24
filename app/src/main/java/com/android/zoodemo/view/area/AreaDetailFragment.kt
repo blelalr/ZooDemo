@@ -64,6 +64,8 @@ class AreaDetailFragment : Fragment(R.layout.fragment_area_detail), PlantClickLi
     }
 
     override fun onPlantItemClick(plant: PlantModel) {
-        mNavController.navigate(AreaDetailFragmentDirections.actionAreaDetailFragmentToPlantDetailFragment(plant, plant.fNameCh))
+        mNavController.currentDestination?.getAction(R.id.action_areaDetailFragment_to_plantDetailFragment)?.let {
+            mNavController.navigate(AreaDetailFragmentDirections.actionAreaDetailFragmentToPlantDetailFragment(plant, plant.fNameCh))
+        }
     }
 }

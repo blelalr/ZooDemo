@@ -20,7 +20,7 @@ class GlideUtil {
     companion object {
 
         private val options = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.IMMEDIATE).format(DecodeFormat.PREFER_RGB_565)
-        private val reSizeOption = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.IMMEDIATE).format(DecodeFormat.PREFER_RGB_565).override(100,100).encodeQuality(50)
+        private val reSizeOption = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.IMMEDIATE).format(DecodeFormat.PREFER_RGB_565).override(300,300).encodeQuality(50)
 
 
         private val drawableListener = object : RequestListener<Drawable> {
