@@ -12,8 +12,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.zoodemo.R
 import com.android.zoodemo.data.network.ApiResponse
 import com.android.zoodemo.databinding.ActivityMainBinding
+import com.android.zoodemo.util.viewBinding
 import com.android.zoodemo.viewmodel.ZooViewModel
-import com.xnbay.xnfun.tv.delegate.viewBinding
 
 
 class MainActivity : AppCompatActivity() {

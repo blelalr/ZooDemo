@@ -1,26 +1,22 @@
 package com.android.zoodemo.view.area
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+import android.transition.Transition
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
 import com.android.zoodemo.R
 import com.android.zoodemo.data.model.AreaModel
+import com.android.zoodemo.databinding.ItemViewBinding
 import com.android.zoodemo.util.GlideUtil
 
-class AreaListAdapter(private val mAreaClickListener : AreaClickListener): RecyclerView.Adapter<AreaViewHolder>() {
+class AreaListAdapter(private val mAreaClickListener: (AreaModel) -> Unit): RecyclerView.Adapter<AreaViewHolder>() {
     var mData = listOf<AreaModel>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AreaViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        return AreaViewHolder(
-            layoutInflater.inflate(
-                R.layout.item_view,
-                parent,
-                false
-            )
-        )
+        val binding = ItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return AreaViewHolder(binding, mAreaClickListener)
     }
 
     override fun getItemCount(): Int {
@@ -28,24 +24,22 @@ class AreaListAdapter(private val mAreaClickListener : AreaClickListener): Recyc
     }
 
     override fun onBindViewHolder(holder: AreaViewHolder, position: Int) {
-        holder.itemView.setOnClickListener{ mAreaClickListener.onAreaItemClick(mData[position])}
-        holder.tvAreaName.text = mData[position].eName
-        holder.tvAreaInfo.text = mData[position].eInfo
-        holder.tvAreaMemo.text = if(mData[position].eMemo.isNullOrBlank()) {
-            holder.tvAreaMemo.context.getString(R.string.item_view_area_tv_no_memo)
-        } else {
-            mData[position].eMemo
-        }
-        GlideUtil.loadImage(mData[position].ePicURL, holder.ivAreaImg, android.R.drawable.stat_sys_download)
-
+        holder.onBind(mData[position])
     }
-
 }
 
-class AreaViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView) {
-    val tvAreaName: TextView = itemView.findViewById(R.id.tv_name)
-    val tvAreaInfo: TextView = itemView.findViewById(R.id.tv_info)
-    val tvAreaMemo: TextView = itemView.findViewById(R.id.tv_memo)
-    val ivAreaImg: ImageView = itemView.findViewById(R.id.iv_image)
+class AreaViewHolder(private val binding: ItemViewBinding, val mAreaClickListener: (AreaModel) -> Unit): RecyclerView.ViewHolder(binding.root) {
 
+    fun onBind(areaModel: AreaModel) {
+        binding.root.setOnClickListener { mAreaClickListener(areaModel) }
+        binding.tvName.text = areaModel.eName
+        binding.tvInfo.text = areaModel.eInfo
+        binding.tvMemo.text = if(areaModel.eMemo.isNullOrBlank()) {
+            binding.root.context.getString(R.string.item_view_area_tv_no_memo)
+        } else {
+            areaModel.eMemo
+        }
+
+        GlideUtil.loadImage(areaModel.ePicURL, binding.root.context, binding.ivImage, android.R.drawable.stat_sys_download)
+    }
 }

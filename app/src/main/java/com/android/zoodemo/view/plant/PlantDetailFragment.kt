@@ -7,7 +7,7 @@ import androidx.navigation.fragment.navArgs
 import com.android.zoodemo.R
 import com.android.zoodemo.databinding.FragmentPlantDetailBinding
 import com.android.zoodemo.util.GlideUtil
-import com.xnbay.xnfun.tv.delegate.viewBinding
+import com.android.zoodemo.util.viewBinding
 
 class PlantDetailFragment : Fragment(R.layout.fragment_plant_detail) {
     private val mBinding by viewBinding(FragmentPlantDetailBinding::bind)

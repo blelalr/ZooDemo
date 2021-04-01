@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.zoodemo.R
 import com.android.zoodemo.data.model.AreaModel
 import com.android.zoodemo.databinding.FragmentAreaListBinding
+import com.android.zoodemo.util.viewBinding
 import com.android.zoodemo.viewmodel.ZooViewModel
-import com.xnbay.xnfun.tv.delegate.viewBinding
 
-class AreaListFragment : Fragment(R.layout.fragment_area_list), AreaClickListener {
+class AreaListFragment : Fragment(R.layout.fragment_area_list) {
     private val mZooViewModel: ZooViewModel by activityViewModels()
-    private val mAreaListAdapter = AreaListAdapter(this)
+    private val mAreaListAdapter = AreaListAdapter { areaItemClick(it) }
     private val mBinding by viewBinding(FragmentAreaListBinding::bind)
     private val mNavController by lazy { NavHostFragment.findNavController(this) }
 
@@ -36,7 +36,7 @@ class AreaListFragment : Fragment(R.layout.fragment_area_list), AreaClickListene
         })
     }
 
-    override fun onAreaItemClick(area: AreaModel) {
+    private fun areaItemClick(area: AreaModel) {
         mNavController.currentDestination?.getAction(R.id.action_areaListFragment_to_areaDetailFragment)?.let {
             mNavController.navigate(AreaListFragmentDirections.actionAreaListFragmentToAreaDetailFragment(area, area.eName))
         }

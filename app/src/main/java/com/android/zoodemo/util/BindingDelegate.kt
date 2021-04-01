@@ -1,13 +1,4 @@
-package com.xnbay.xnfun.tv.delegate
-
-/****************************************************
- * Author: alanlai
- * Create Date: 1/18/21
- * Usage:
- *
- * Revision History
- * Date         Author           Description
- ****************************************************/
+package com.android.zoodemo.util
 
 import android.view.LayoutInflater
 import android.view.View

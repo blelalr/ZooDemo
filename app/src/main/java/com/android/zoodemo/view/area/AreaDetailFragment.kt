@@ -14,17 +14,16 @@ import com.android.zoodemo.R
 import com.android.zoodemo.data.model.PlantModel
 import com.android.zoodemo.databinding.FragmentAreaDetailBinding
 import com.android.zoodemo.util.GlideUtil
-import com.android.zoodemo.view.plant.PlantClickListener
+import com.android.zoodemo.util.viewBinding
 import com.android.zoodemo.view.plant.PlantListAdapter
 import com.android.zoodemo.viewmodel.ZooViewModel
-import com.xnbay.xnfun.tv.delegate.viewBinding
 
-class AreaDetailFragment : Fragment(R.layout.fragment_area_detail), PlantClickListener{
+class AreaDetailFragment : Fragment(R.layout.fragment_area_detail){
     private var mPlantList: List<PlantModel> = mutableListOf()
     private val mZooViewModel: ZooViewModel by activityViewModels()
     private val mBinding by viewBinding(FragmentAreaDetailBinding::bind)
     private val arg : AreaDetailFragmentArgs by navArgs()
-    private val plantListAdapter = PlantListAdapter(this)
+    private val plantListAdapter = PlantListAdapter { plantItemClick(it) }
     private val mNavController by lazy { NavHostFragment.findNavController(this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,9 +50,9 @@ class AreaDetailFragment : Fragment(R.layout.fragment_area_detail), PlantClickLi
         plantListAdapter.apply { mData = mPlantList }
         mBinding.rvPlantList.adapter = plantListAdapter
 
-        mBinding.tvAreaDetailLink.setOnClickListener(View.OnClickListener {
+        mBinding.tvAreaDetailLink.setOnClickListener {
             openUrlBrowser(arg.area.eURL)
-        })
+        }
 
     }
 
@@ -63,7 +62,7 @@ class AreaDetailFragment : Fragment(R.layout.fragment_area_detail), PlantClickLi
         startActivity(intent)
     }
 
-    override fun onPlantItemClick(plant: PlantModel) {
+    private fun plantItemClick(plant: PlantModel) {
         mNavController.currentDestination?.getAction(R.id.action_areaDetailFragment_to_plantDetailFragment)?.let {
             mNavController.navigate(AreaDetailFragmentDirections.actionAreaDetailFragmentToPlantDetailFragment(plant, plant.fNameCh))
         }

@@ -1,5 +1,6 @@
 package com.android.zoodemo.util
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import com.android.zoodemo.R
@@ -19,8 +20,8 @@ class GlideUtil {
 
     companion object {
 
-        private val options = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.IMMEDIATE).format(DecodeFormat.PREFER_RGB_565)
-        private val reSizeOption = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.IMMEDIATE).format(DecodeFormat.PREFER_RGB_565).override(300,300).encodeQuality(50)
+        private val options = RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).format(DecodeFormat.PREFER_RGB_565)
+        private val reSizeOption = RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).format(DecodeFormat.PREFER_RGB_565).override(300,300).encodeQuality(50)
 
 
         private val drawableListener = object : RequestListener<Drawable> {
@@ -47,8 +48,8 @@ class GlideUtil {
         }
 
 
-        fun loadImage(url: String, imageView: ImageView, placeHolder : Int) {
-            Glide.with(imageView)
+        fun loadImage(url: String, context:Context, imageView: ImageView, placeHolder : Int) {
+            Glide.with(context)
                     .load(url)
                     .apply(reSizeOption)
                     .error(R.color.color_A8A8A8)
