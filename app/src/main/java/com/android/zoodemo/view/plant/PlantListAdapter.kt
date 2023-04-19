@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.android.zoodemo.data.model.PlantModel
 import com.android.zoodemo.databinding.ItemViewBinding
 import com.android.zoodemo.util.GlideUtil
+import com.android.zoodemo.data.model.PlantModel
 
 class PlantListAdapter(private val mPlantClickListener : (PlantModel) -> Unit) : RecyclerView.Adapter<PlantViewHolder>() {
     var mData = listOf<PlantModel>()

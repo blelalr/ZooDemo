@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/areaListFragment"
-        android:name="com.android.zoodemo.view.area.AreaListFragment"
+        android:name="com.android.zoodemo.view.areaList.AreaListFragment"
         android:label="台北市立動物園"
         tools:layout="@layout/fragment_area_list" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/areaDetailFragment"
-        android:name="com.android.zoodemo.view.area.AreaDetailFragment"
+        android:name="com.android.zoodemo.view.areaDetail.AreaDetailFragment"
         android:label="{title}"
         tools:layout="@layout/fragment_area_detail" >
         <action

@@ -1,26 +1,23 @@
-package com.android.zoodemo.view.area
+package com.android.zoodemo.view.areaDetail
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.zoodemo.R
-import com.android.zoodemo.data.model.PlantModel
 import com.android.zoodemo.databinding.FragmentAreaDetailBinding
 import com.android.zoodemo.util.GlideUtil
 import com.android.zoodemo.util.viewBinding
 import com.android.zoodemo.view.plant.PlantListAdapter
-import com.android.zoodemo.viewmodel.ZooViewModel
+import com.android.zoodemo.data.model.PlantModel
 
 class AreaDetailFragment : Fragment(R.layout.fragment_area_detail){
     private var mPlantList: List<PlantModel> = mutableListOf()
-    private val mZooViewModel: ZooViewModel by activityViewModels()
     private val mBinding by viewBinding(FragmentAreaDetailBinding::bind)
     private val arg : AreaDetailFragmentArgs by navArgs()
     private val plantListAdapter = PlantListAdapter { plantItemClick(it) }
@@ -28,7 +25,7 @@ class AreaDetailFragment : Fragment(R.layout.fragment_area_detail){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mPlantList = mZooViewModel.getPlantListByKey(arg.area.eName)
+//        mPlantList = mZooViewModel.getPlantListByKey(arg.area.eName)
         initView()
 
     }

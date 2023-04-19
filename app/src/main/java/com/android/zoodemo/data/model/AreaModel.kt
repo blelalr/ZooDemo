@@ -5,21 +5,21 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class AreaModel(
-    @SerializedName("E_Category")
+    @SerializedName("e_category")
     val eCategory: String = "",
-    @SerializedName("E_Geo")
+    @SerializedName("e_geo")
     val eGeo: String = "",
-    @SerializedName("E_Info")
+    @SerializedName("e_info")
     val eInfo: String = "",
-    @SerializedName("E_Memo")
+    @SerializedName("e_memo")
     val eMemo: String = "",
-    @SerializedName("E_Name")
+    @SerializedName("e_name")
     val eName: String = "",
-    @SerializedName("E_no")
+    @SerializedName("e_no")
     val eNo: String = "",
-    @SerializedName("E_Pic_URL")
+    @SerializedName("e_pic_url")
     val ePicURL: String = "",
-    @SerializedName("E_URL")
+    @SerializedName("e_url")
     val eURL: String = "",
     @SerializedName("_id")
     val id: Int = 0
