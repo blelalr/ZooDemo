@@ -5,6 +5,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -15,41 +19,55 @@ import com.android.zoodemo.util.GlideUtil
 import com.android.zoodemo.util.viewBinding
 import com.android.zoodemo.view.plant.PlantListAdapter
 import com.android.zoodemo.data.model.PlantModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-class AreaDetailFragment : Fragment(R.layout.fragment_area_detail){
-    private var mPlantList: List<PlantModel> = mutableListOf()
+@AndroidEntryPoint
+class AreaDetailFragment : Fragment(R.layout.fragment_area_detail) {
     private val mBinding by viewBinding(FragmentAreaDetailBinding::bind)
-    private val arg : AreaDetailFragmentArgs by navArgs()
+    private val arg: AreaDetailFragmentArgs by navArgs()
     private val plantListAdapter = PlantListAdapter { plantItemClick(it) }
     private val mNavController by lazy { NavHostFragment.findNavController(this) }
+    private val plantPageViewModel: PlantPageViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        mPlantList = mZooViewModel.getPlantListByKey(arg.area.eName)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                plantPageViewModel.getPlantPagingDataByAreaName(arg.area.eName).collectLatest {
+                    plantListAdapter.submitData(it)
+                }
+            }
+        }
         initView()
 
     }
 
     private fun initView() {
-        GlideUtil.load(arg.area.ePicURL, mBinding.ivAreaDetailImage, android.R.drawable.stat_sys_download)
+        GlideUtil.load(
+            arg.area.ePicURL,
+            mBinding.ivAreaDetailImage,
+            android.R.drawable.stat_sys_download
+        )
         mBinding.tvAreaDetailInfo.text = arg.area.eInfo
         mBinding.tvAreaDetailCategory.text = arg.area.eCategory
-        mBinding.tvAreaDetailMemo.text = if(arg.area.eMemo .isNullOrBlank()) {
+        mBinding.tvAreaDetailMemo.text = arg.area.eMemo.ifBlank {
             getString(R.string.item_view_area_tv_no_memo)
-        } else {
-            arg.area.eMemo
         }
-
-        val layoutManager = LinearLayoutManager(requireContext())
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        mBinding.rvPlantList.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-        mBinding.rvPlantList.layoutManager = layoutManager
-        plantListAdapter.apply { mData = mPlantList }
-        mBinding.rvPlantList.adapter = plantListAdapter
 
         mBinding.tvAreaDetailLink.setOnClickListener {
             openUrlBrowser(arg.area.eURL)
         }
+
+        mBinding.rvPlantList.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                LinearLayoutManager.VERTICAL
+            )
+        )
+        mBinding.rvPlantList.adapter = plantListAdapter
+
 
     }
 
@@ -60,8 +78,14 @@ class AreaDetailFragment : Fragment(R.layout.fragment_area_detail){
     }
 
     private fun plantItemClick(plant: PlantModel) {
-        mNavController.currentDestination?.getAction(R.id.action_areaDetailFragment_to_plantDetailFragment)?.let {
-            mNavController.navigate(AreaDetailFragmentDirections.actionAreaDetailFragmentToPlantDetailFragment(plant, plant.fNameCh))
-        }
+        mNavController.currentDestination?.getAction(R.id.action_areaDetailFragment_to_plantDetailFragment)
+            ?.let {
+                mNavController.navigate(
+                    AreaDetailFragmentDirections.actionAreaDetailFragmentToPlantDetailFragment(
+                        plant,
+                        plant.fNameCh
+                    )
+                )
+            }
     }
 }

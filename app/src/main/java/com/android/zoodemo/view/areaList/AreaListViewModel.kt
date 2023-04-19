@@ -3,7 +3,6 @@ package com.android.zoodemo.view.areaList
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.zoodemo.data.model.AreaModel
 import com.android.zoodemo.data.model.AreaResponseModel
 
 import com.android.zoodemo.data.network.NetworkState

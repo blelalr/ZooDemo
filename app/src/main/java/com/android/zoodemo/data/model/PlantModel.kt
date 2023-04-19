@@ -75,6 +75,6 @@ data class PlantModel(
     val fVoice03URL: String = "",
     @SerializedName("_id")
     val id: Int = 0,
-    @SerializedName("F_Name_Ch")
+    @SerializedName("﻿F_Name_Ch")
     val fNameCh: String = ""
 ): Serializable

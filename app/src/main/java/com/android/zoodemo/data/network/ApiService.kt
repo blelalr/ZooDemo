@@ -2,7 +2,6 @@ package com.android.zoodemo.data.network
 
 import com.android.zoodemo.data.model.AreaResponseModel
 import com.android.zoodemo.data.model.PlantResponseModel
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -16,9 +15,9 @@ interface ApiService {
 
     @GET("/api/v1/dataset/f18de02f-b6c9-47c0-8cda-50efad621c14")
     suspend fun getPlantData(
-        @Query("q") query: String,
+        @Query("scope") scope: String = ApiConstant.QUERY_PARAMS_SCOPE,
         @Query("limit") limit: Int,
         @Query("offset") offset: Int
-    ): Response<PlantResponseModel>
+    ): PlantResponseModel
 
 }
